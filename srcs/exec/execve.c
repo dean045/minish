@@ -6,7 +6,7 @@
 /*   By: brhajji- <brhajji-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/09 15:46:20 by brhajji-          #+#    #+#             */
-/*   Updated: 2022/07/20 03:40:42 by brhajji-         ###   ########.fr       */
+/*   Updated: 2022/07/20 06:08:53 by brhajji-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,9 +21,9 @@ char	*get_cmd_path(char *cmd, char **envp)
 	i = -1;
 	if (!access(cmd, X_OK))
 		return (cmd);
+	else if (access(cmd, X_OK) && *cmd == '/')
+		return (NULL);
 	path = get_path(envp);
-	//if (!path)
-		
 	while (path && path[++i])
 	{
 		tmp = ft_strjoin(path[i], "/");
@@ -38,7 +38,7 @@ char	*get_cmd_path(char *cmd, char **envp)
 pid_t	run(t_token *token, int *fd, int num, t_exec utils)
 {
 	pid_t	pid;
-
+	char	*path;
 
 	signal(SIGINT, SIG_IGN);
 	pid = fork();
@@ -77,13 +77,20 @@ pid_t	run(t_token *token, int *fd, int num, t_exec utils)
 			close(fd[1]);
 		if (fd[0] > 0)
 			close(fd[0]);
+		path = get_cmd_path(token->word, utils.envp);
 		if (is_built_in(token) == 1)
 		{
 			manage_built_in(token, &utils);
 			exit(0);
 		}
+		else if (!path)
+		{
+			write(2, token->word, ft_strlen(token->word));
+			write(2, " : command not found\n", 21);
+		}
 		else if (execve(get_cmd_path(token->word, utils.envp), get_arg(token), utils.envp) == -1)
 			perror(token->word);
+		exit(127);
 	}
 	return (pid);
 }
@@ -129,7 +136,6 @@ void	exec(t_token *token, t_exec *utils)
 			if (utils->nb_cmd > 1)
 				if (pipe(fd) < 0)
 					return (perror("Pipe "));
-			//printf("fd in = %i\n", utils->node->in);
 			if (utils->node->in != -2)
 			{
 				if (is_built_in(token) == 1 && utils->nb_cmd == 1)

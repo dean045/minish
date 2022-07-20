@@ -6,7 +6,7 @@
 /*   By: brhajji- <brhajji-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/27 01:50:59 by brhajji-          #+#    #+#             */
-/*   Updated: 2022/07/20 02:32:19 by brhajji-         ###   ########.fr       */
+/*   Updated: 2022/07/20 06:10:05 by brhajji-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,6 @@ int	init_env(t_exec *utils, char **envp)
 	
 	if (!(*envp))
 	{
-		printf("test\n");
 		tmp = malloc(sizeof(t_env));
 		temp = malloc(sizeof(char ) * 1024);
 		tmp->content = getcwd(temp, sizeof(temp));
@@ -34,7 +33,7 @@ int	init_env(t_exec *utils, char **envp)
 	else if (utils && envp)
 	{
 		utils->envp_lst = init_lst_env(envp, utils);
-		printf("3%s\n", utils->envp_lst->content);
+		//printf("3%s\n", utils->envp_lst->content);
 		utils->envp = lst_to_char(utils->envp_lst);
 	}
 	return (0);

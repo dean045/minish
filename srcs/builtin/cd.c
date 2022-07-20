@@ -6,7 +6,7 @@
 /*   By: brhajji- <brhajji-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/24 12:40:01 by brhajji-          #+#    #+#             */
-/*   Updated: 2022/06/29 17:42:07 by brhajji-         ###   ########.fr       */
+/*   Updated: 2022/07/20 06:12:58 by brhajji-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,7 @@ int	cd(char *path, t_exec *utils)
 			return (0);	
 		}
 		else
-			write(2 , "cd: HOME not set", 17);
+			write(2 , "cd: HOME not set\n", 17);
 	}
 	else if (opendir(path))
 	{

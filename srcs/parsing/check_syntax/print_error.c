@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   print_error.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vahemere <vahemere@student.42.fr>          +#+  +:+       +#+        */
+/*   By: brhajji- <brhajji-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/03 06:07:41 by vahemere          #+#    #+#             */
-/*   Updated: 2022/07/18 04:55:23 by vahemere         ###   ########.fr       */
+/*   Updated: 2022/07/20 06:12:24 by brhajji-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,33 +31,33 @@ int	free_lst(t_token *token)
 int	print_message(int error)
 {
 	if (error == 1)
-		dprintf(2, "minishell: syntax error near unexpected token `newline'\n");
+		write(2, "minishell: syntax error near unexpected token `newline'\n", 56);
 	else if (error == 2)
-		dprintf(2, "minishell: syntax error near unexpected token '&'\n");
+		write(2, "minishell: syntax error near unexpected token '&'\n", 50);
 	else if (error == 3)
-		dprintf(2, "minishell: syntax error near unexpected token '&&'\n");
+		write(2, "minishell: syntax error near unexpected token '&&'\n", 51);
 	else if (error == 4)
-		dprintf(2, "minishell: syntax error double quote not closed\n");
+		write(2, "minishell: syntax error double quote not closed\n", 48);
 	else if (error == 5)
-		dprintf(2, "minishell: syntax error single quote not closed\n");
+		write(2, "minishell: syntax error single quote not closed\n", 48);
 	return (0);
 }
 
 int	print_message_and_cleaning(int error, t_token **lst)
 {
 	if (error == 1)
-		dprintf(2, "minishell: syntax error near unexpected token `|'\n");
+		write(2, "minishell: syntax error near unexpected token `|'\n", 50);
 	if (error == 2)
-		dprintf(2, "minishell: syntax error near unexpected token `<'\n");
+		write(2, "minishell: syntax error near unexpected token `<'\n", 50);
 	if (error == 3)
-		dprintf(2, "minishell: syntax error near unexpected token `>'\n");
+		write(2, "minishell: syntax error near unexpected token `>'\n" , 50);
 	if (error == 4)
-		dprintf(2, "minishell: syntax error near unexpected token `<<'\n");
+		write(2, "minishell: syntax error near unexpected token `<<'\n", 51);
 	if (error == 5)
-		dprintf(2, "minishell: syntax error near unexpected token `>>'\n");
+		write(2, "minishell: syntax error near unexpected token `>>'\n", 51);
 	if (error == 6)
-		dprintf(2, "minishell: syntax error near unexpected token `||'\n");
+		write(2, "minishell: syntax error near unexpected token `||'\n", 51);
 	if (error == 7)
-		dprintf(2, "minishell: syntax error near unexpected token `|'\n");
+		write(2, "minishell: syntax error near unexpected token `|'\n", 50);
 	return (free_lst(*lst));
 }
