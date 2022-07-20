@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   tokenizer.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vahemere <vahemere@student.42.fr>          +#+  +:+       +#+        */
+/*   By: brhajji- <brhajji-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/03 03:18:55 by vahemere          #+#    #+#             */
-/*   Updated: 2022/07/16 23:26:20 by vahemere         ###   ########.fr       */
+/*   Updated: 2022/07/20 23:48:15 by brhajji-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ void	type_of_word2(t_token *tmp, t_token *first, t_token *save)
 			tmp->type = FD;
 		else if (save->type == R_OUT)
 			tmp->type = FD;
-		else if (save->type == FD
+		else if ((save->type == FD || save->type == LIMITOR)
 			&& (!tmp->next || tmp->next->word[0] == '|' || tmp->next))
 		{
 			if (first->type != CMD)

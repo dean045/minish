@@ -6,7 +6,7 @@
 /*   By: brhajji- <brhajji-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/16 14:33:41 by brhajji-          #+#    #+#             */
-/*   Updated: 2022/07/20 01:47:55 by brhajji-         ###   ########.fr       */
+/*   Updated: 2022/07/20 21:20:06 by brhajji-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ void	here_doc(char *limiter, t_node *node, int i)
 		buff = readline("> ");
 		if (!buff && utils->can_run != 0)
 		{
-			write(2, "warning: here-document delimited by end-of-file.\n", 50);
+			write(2, "warning: here-document delimited by end-of-file.\n", 49);
 			break;
 		}
 		if (utils->can_run == 0)
@@ -46,7 +46,7 @@ void	here_doc(char *limiter, t_node *node, int i)
 			write(node->here_doc_fd, "\n", 1);
 		}
 	}
-	close(node->here_doc_fd);
+	//close(node->here_doc_fd);
 	free(buff);
 }
 

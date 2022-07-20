@@ -6,7 +6,7 @@
 /*   By: brhajji- <brhajji-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/13 10:58:02 by brhajji-          #+#    #+#             */
-/*   Updated: 2022/07/20 01:35:19 by brhajji-         ###   ########.fr       */
+/*   Updated: 2022/07/20 21:24:04 by brhajji-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,7 +74,6 @@ void	refresh(t_token *token, t_exec *utils)
 	utils->node = NULL;
 	utils->nb_cmd = nb_cmd(token);
 	utils->nb_node = nb_node(token);
-	//utils->envp_lst = NULL;
 	utils->token_tmp = token;
 	node = NULL;
 	i = -1;

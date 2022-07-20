@@ -6,7 +6,7 @@
 /*   By: brhajji- <brhajji-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/09 15:46:20 by brhajji-          #+#    #+#             */
-/*   Updated: 2022/07/20 06:08:53 by brhajji-         ###   ########.fr       */
+/*   Updated: 2022/07/20 23:49:40 by brhajji-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -124,7 +124,6 @@ void	exec(t_token *token, t_exec *utils)
 	x = 0;
 	//utils = NULL;
 	fd[0] = 0;
-	//printf("%i\n", utils->nb_cmd);
 	pid = malloc(sizeof(pid_t) * (utils->nb_cmd + 1));
 	while (++i < utils->nb_node)
 	{

@@ -6,7 +6,7 @@
 /*   By: brhajji- <brhajji-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/09 16:04:55 by brhajji-          #+#    #+#             */
-/*   Updated: 2022/07/13 21:32:48 by brhajji-         ###   ########.fr       */
+/*   Updated: 2022/07/20 21:26:29 by brhajji-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,7 @@ void	set_r_in(t_node *node, t_token *token)
 				perror(token->next->word);
 			}
 		}
-		if (token && token->type == DR_IN && token->next->type == FD)
+		if (token && token->type == DR_IN && token->next->type == LIMITOR)
 		{
 			if (node->in > 0)
 				close(node->in);
