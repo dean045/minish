@@ -6,7 +6,7 @@
 /*   By: brhajji- <brhajji-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/05 18:14:41 by vahemere          #+#    #+#             */
-/*   Updated: 2022/07/20 02:27:52 by brhajji-         ###   ########.fr       */
+/*   Updated: 2022/07/21 00:24:50 by brhajji-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,7 @@ typedef struct s_exec
 	char 			**envp;
 	struct s_env	*envp_lst;
 	int				nb_node;
+	char			*err;
 	int				nb_cmd;
 	int				on_here_doc;
 	int				can_run;
@@ -212,6 +213,7 @@ int		ft_strcmp(char *s1, char *s2);
 int		len_darr(char **arr);
 int		isdigits(char c);
 int		is_last(t_token *token);
+int		ft_atoi(char *str);
 
 	/*### CLEANING ###*/
 void	free_double_array(char **arr);

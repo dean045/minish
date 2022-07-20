@@ -6,7 +6,7 @@
 /*   By: brhajji- <brhajji-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/09 15:46:20 by brhajji-          #+#    #+#             */
-/*   Updated: 2022/07/20 23:49:40 by brhajji-         ###   ########.fr       */
+/*   Updated: 2022/07/21 00:26:43 by brhajji-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -138,7 +138,7 @@ void	exec(t_token *token, t_exec *utils)
 			if (utils->node->in != -2)
 			{
 				if (is_built_in(token) == 1 && utils->nb_cmd == 1)
-					no_fork(token, utils);
+					manage_built_in(token, utils);
 				else
 				{
 					pid[x] = run(token, fd, num, *utils);

@@ -6,7 +6,7 @@
 /*   By: brhajji- <brhajji-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/27 01:50:59 by brhajji-          #+#    #+#             */
-/*   Updated: 2022/07/20 06:10:05 by brhajji-         ###   ########.fr       */
+/*   Updated: 2022/07/21 00:18:59 by brhajji-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,6 @@ int	init_env(t_exec *utils, char **envp)
 	else if (utils && envp)
 	{
 		utils->envp_lst = init_lst_env(envp, utils);
-		//printf("3%s\n", utils->envp_lst->content);
 		utils->envp = lst_to_char(utils->envp_lst);
 	}
 	return (0);
@@ -46,40 +45,6 @@ int	is_built_in(t_token *token)
 		return (1);
 	else 
 		return (-1);
-}
-
-void	no_fork(t_token *token, t_exec *utils)
-{
-	if (!strcmp(token->word, "cd"))
-	{
-		if (get_nb_arg(token) == 2)
-			cd(token->next->word, utils);
-		else if (get_nb_arg(token) == 1)
-			cd(NULL, utils);
-		else
-			write(2, "cd: too many arguments", 23);
-	}
-	else if (!strcmp(token->word, "export"))
-	{
-		if (!token->next || is_last(token))
-			export(NULL, &utils);
-		else
-			while (token->next && token->next->type == ARG)
-			{
-				export(ft_strcpy(token->next->word), &utils);
-				token = token->next;
-			}
-	}
-	else if (!ft_strcmp(token->word, "unset"))
-	{
-		while (token->next && token->next->type == ARG)
-		{
-			unset(token->next->word, utils);
-			token = token->next;
-		}
-	}
-	else if (!ft_strcmp(token->word, "exit"))
-		ft_exit(utils);
 }
 
 int	manage_built_in(t_token *token, t_exec *utils)
@@ -106,7 +71,10 @@ int	manage_built_in(t_token *token, t_exec *utils)
 		else if (get_nb_arg(token) == 1)
 			cd(NULL, utils);
 		else
+		{
 			write(2, "cd: too many arguments", 23);
+			utils->err[0] = '1'; 
+		}
 	}
 	else if (!strcmp(token->word, "export"))
 	{
