@@ -6,7 +6,7 @@
 /*   By: brhajji- <brhajji-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/12 02:04:19 by brhajji-          #+#    #+#             */
-/*   Updated: 2022/07/21 00:20:44 by brhajji-         ###   ########.fr       */
+/*   Updated: 2022/07/22 01:11:59 by brhajji-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,6 +72,6 @@ int	echo(t_token *token)
 	if (i > 1)
 		n = 1;
 	print_echo(i, nb_arg, n, args);
-	utils->err[0] = '0'; 
+	utils->err = 0;
 	return (0);
 }

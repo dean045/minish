@@ -6,7 +6,7 @@
 /*   By: brhajji- <brhajji-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/13 10:58:02 by brhajji-          #+#    #+#             */
-/*   Updated: 2022/07/21 00:27:47 by brhajji-         ###   ########.fr       */
+/*   Updated: 2022/07/22 01:12:55 by brhajji-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,14 +59,12 @@ t_exec	*init_exec(char **envp)
 	utils1 = malloc(sizeof(t_exec ));
 	if (!utils1)
 		return (NULL);
-	utils1->err = malloc(sizeof(char) * 4);
 	if (!utils1)
 	{
 		free(utils1);
 		return (NULL);
 	}
-	utils1->err[0] = '0';
-	utils1->err[1] = '\0';
+	utils1->err = 0;
 	utils1->node = NULL;
 	utils1->envp_lst = NULL;
 	utils1->on_here_doc = 0;

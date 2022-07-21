@@ -6,7 +6,7 @@
 /*   By: brhajji- <brhajji-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/27 01:50:59 by brhajji-          #+#    #+#             */
-/*   Updated: 2022/07/21 00:18:59 by brhajji-         ###   ########.fr       */
+/*   Updated: 2022/07/22 01:12:25 by brhajji-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,7 @@ int	manage_built_in(t_token *token, t_exec *utils)
 		echo(token);
 		return (0);
 	}
-	else if (!strcmp(token->word, "cd"))
+	else if (!ft_strcmp(token->word, "cd"))
 	{
 		if (get_nb_arg(token) == 2)
 			cd(token->next->word, utils);
@@ -73,10 +73,10 @@ int	manage_built_in(t_token *token, t_exec *utils)
 		else
 		{
 			write(2, "cd: too many arguments", 23);
-			utils->err[0] = '1'; 
+			utils->err = 1;
 		}
 	}
-	else if (!strcmp(token->word, "export"))
+	else if (!ft_strcmp(token->word, "export"))
 	{
 		if (!token->next || is_last(token))
 			export(NULL, &utils);

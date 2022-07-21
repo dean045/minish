@@ -6,7 +6,7 @@
 /*   By: brhajji- <brhajji-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/05 18:14:41 by vahemere          #+#    #+#             */
-/*   Updated: 2022/07/21 00:24:50 by brhajji-         ###   ########.fr       */
+/*   Updated: 2022/07/22 01:11:06 by brhajji-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ typedef struct s_exec
 	char 			**envp;
 	struct s_env	*envp_lst;
 	int				nb_node;
-	char			*err;
+	int				err;
 	int				nb_cmd;
 	int				on_here_doc;
 	int				can_run;

@@ -6,7 +6,7 @@
 /*   By: brhajji- <brhajji-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/27 15:47:02 by brhajji-          #+#    #+#             */
-/*   Updated: 2022/07/21 00:24:33 by brhajji-         ###   ########.fr       */
+/*   Updated: 2022/07/22 01:16:04 by brhajji-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ void	ft_exit(t_exec *utils)
 {
 	int	x;
 
-	x = ft_atoi(utils->err);
+	x = utils->err;
 	clean(utils);
 	exit(x);
 }

@@ -6,7 +6,7 @@
 /*   By: brhajji- <brhajji-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/24 15:09:32 by brhajji-          #+#    #+#             */
-/*   Updated: 2022/07/21 00:21:01 by brhajji-         ###   ########.fr       */
+/*   Updated: 2022/07/22 01:12:11 by brhajji-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -119,6 +119,6 @@ int	env(t_exec *utils)
 			printf("%s\n", tmp->content);
 		tmp = tmp->next;
 	}
-	utils->err[0] = '0'; 
+	utils->err = 0;
 	return (0);
 }

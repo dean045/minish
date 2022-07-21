@@ -6,7 +6,7 @@
 /*   By: brhajji- <brhajji-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/09 15:46:20 by brhajji-          #+#    #+#             */
-/*   Updated: 2022/07/21 00:26:43 by brhajji-         ###   ########.fr       */
+/*   Updated: 2022/07/22 01:15:17 by brhajji-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -155,6 +155,12 @@ void	exec(t_token *token, t_exec *utils)
 			close(utils->previous_fd);
 	}
 	while (--x >= 0)
+	{
 		waitpid(pid[x], &status, 0);
+		if (WIFEXITED(status))
+			utils->err = WEXITSTATUS(status);
+		if (WIFSIGNALED(status))
+			utils->err = WTERMSIG(status);
+	}
 	free(pid);
 }

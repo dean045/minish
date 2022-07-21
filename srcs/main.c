@@ -6,7 +6,7 @@
 /*   By: brhajji- <brhajji-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/05 18:14:25 by vahemere          #+#    #+#             */
-/*   Updated: 2022/07/20 01:17:53 by brhajji-         ###   ########.fr       */
+/*   Updated: 2022/07/22 01:13:19 by brhajji-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@ void    ctrl_c_here(int sig)
 	close(0);
 	utils->can_run = 0;
 	utils->on_here_doc = 0;
+	utils->err = 130;
 }
 
 void	handle_sig()
