@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   print_error.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: brhajji- <brhajji-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: vahemere <vahemere@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/03 06:07:41 by vahemere          #+#    #+#             */
-/*   Updated: 2022/07/20 06:12:24 by brhajji-         ###   ########.fr       */
+/*   Updated: 2022/07/21 00:46:47 by vahemere         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,10 @@ int	free_lst(t_token *token)
 int	print_message(int error)
 {
 	if (error == 1)
-		write(2, "minishell: syntax error near unexpected token `newline'\n", 56);
+	{
+		write(2, "minishell: syntax error near", 28);
+		write(2, "unexpected token `newline'\n", 27);
+	}
 	else if (error == 2)
 		write(2, "minishell: syntax error near unexpected token '&'\n", 50);
 	else if (error == 3)
@@ -50,7 +53,7 @@ int	print_message_and_cleaning(int error, t_token **lst)
 	if (error == 2)
 		write(2, "minishell: syntax error near unexpected token `<'\n", 50);
 	if (error == 3)
-		write(2, "minishell: syntax error near unexpected token `>'\n" , 50);
+		write(2, "minishell: syntax error near unexpected token `>'\n", 50);
 	if (error == 4)
 		write(2, "minishell: syntax error near unexpected token `<<'\n", 51);
 	if (error == 5)

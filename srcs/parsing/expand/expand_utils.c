@@ -6,7 +6,7 @@
 /*   By: vahemere <vahemere@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/27 20:07:52 by vahemere          #+#    #+#             */
-/*   Updated: 2022/07/18 02:26:00 by vahemere         ###   ########.fr       */
+/*   Updated: 2022/07/22 01:54:16 by vahemere         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,8 +44,18 @@ int	search_word(char *w, t_expand *exp, char *nv, t_quote *state)
 	int	i;
 	int	y;
 
-	i = 0;
+	i = -1;
 	y = 0;
+	if (w[1] == '?')
+	{
+		while (utils->errchar[++i])
+			exp->str[exp->len++] = utils->errchar[i];
+		free(utils->errchar);
+		utils->errchar = NULL;
+		exp->found = 1;
+		return (2);
+	}
+	i = 0;
 	while (w[i++] && nv[y] && w[i] == nv[y])
 		y++;
 	if ((w[i] == '\0' || w[i] == '$' || sign(w[i], state))
@@ -72,6 +82,8 @@ int	basic_expantion(char *w, t_expand *exp, char **nv, t_quote *state)
 	{
 		y = 0;
 		i = 1;
+		if (w[i] == '?')
+			return (search_word(w, exp, nv[x], state));
 		if (w[i] == nv[x][y])
 		{
 			i = search_word(w, exp, nv[x], state);
@@ -92,12 +104,19 @@ char	*malloc_for_expand(t_token **exp, t_quote *st, char **env)
 
 	j = 0;
 	len = 0;
+	st->found = 0;
 	while ((*exp)->word[j])
 	{
 		quoting_state((*exp)->word[j], st);
 		if ((*exp)->word[j] == '$')
 		{
-			j += search_in_env_len(&(*exp)->word[j], env, st, &len);
+			if ((*exp)->word[j + 1] && (*exp)->word[j + 1] == '?')
+			{
+				len += ft_strlen(utils->errchar);
+				j += 2;
+			}
+			else
+				j += search_in_env_len(&(*exp)->word[j], env, st, &len);
 			if (st->found == 0 && (*exp)->word[j] && sign((*exp)->word[j], st))
 				len++;
 		}
