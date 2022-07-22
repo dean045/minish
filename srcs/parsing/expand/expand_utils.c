@@ -6,7 +6,7 @@
 /*   By: vahemere <vahemere@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/27 20:07:52 by vahemere          #+#    #+#             */
-/*   Updated: 2022/07/22 01:54:16 by vahemere         ###   ########.fr       */
+/*   Updated: 2022/07/22 13:23:07 by vahemere         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,19 @@ int	word_not_found(char *w, t_quote *state)
 	return (i);
 }
 
+int	put_error_code(t_expand *exp)
+{
+	int	i;
+
+	i = -1;
+	while (utils->errchar[++i])
+		exp->str[exp->len++] = utils->errchar[i];
+	free(utils->errchar);
+	utils->errchar = NULL;
+	exp->found = 1;
+	return (2);
+}
+
 int	search_word(char *w, t_expand *exp, char *nv, t_quote *state)
 {
 	int	i;
@@ -47,14 +60,7 @@ int	search_word(char *w, t_expand *exp, char *nv, t_quote *state)
 	i = -1;
 	y = 0;
 	if (w[1] == '?')
-	{
-		while (utils->errchar[++i])
-			exp->str[exp->len++] = utils->errchar[i];
-		free(utils->errchar);
-		utils->errchar = NULL;
-		exp->found = 1;
-		return (2);
-	}
+		return (put_error_code(exp));
 	i = 0;
 	while (w[i++] && nv[y] && w[i] == nv[y])
 		y++;
@@ -94,40 +100,4 @@ int	basic_expantion(char *w, t_expand *exp, char **nv, t_quote *state)
 	if (exp->found == 0)
 		return (word_not_found(w, state));
 	return (i);
-}
-
-char	*malloc_for_expand(t_token **exp, t_quote *st, char **env)
-{
-	int		j;
-	int		len;
-	char	*str;
-
-	j = 0;
-	len = 0;
-	st->found = 0;
-	while ((*exp)->word[j])
-	{
-		quoting_state((*exp)->word[j], st);
-		if ((*exp)->word[j] == '$')
-		{
-			if ((*exp)->word[j + 1] && (*exp)->word[j + 1] == '?')
-			{
-				len += ft_strlen(utils->errchar);
-				j += 2;
-			}
-			else
-				j += search_in_env_len(&(*exp)->word[j], env, st, &len);
-			if (st->found == 0 && (*exp)->word[j] && sign((*exp)->word[j], st))
-				len++;
-		}
-		else
-		{
-			len++;
-			j++;
-		}
-	}
-	str = malloc(sizeof(char) * (len + 1));
-	if (!str)
-		return (0);
-	return (str);
 }
