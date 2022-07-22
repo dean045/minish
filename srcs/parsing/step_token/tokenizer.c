@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   tokenizer.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: brhajji- <brhajji-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: vahemere <vahemere@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/03 03:18:55 by vahemere          #+#    #+#             */
-/*   Updated: 2022/07/20 23:48:15 by brhajji-         ###   ########.fr       */
+/*   Updated: 2022/07/22 23:39:13 by vahemere         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,7 +91,7 @@ void	add_back_node(t_token **lst, char **cmd, int words, int len)
 	(*lst)->back = NULL;
 	while (i < len)
 	{
-		tmp->next = malloc(sizeof(t_token) * (1));
+		tmp->next = ft_malloc(sizeof(t_token) * (1));
 		if (!(*lst)->next)
 			return ;
 		tmp = tmp->next;
@@ -113,7 +113,7 @@ void	tokenizer(char **cmd, t_token **lst, int words)
 	while (cmd[i])
 		i++;
 	len = i;
-	(*lst) = malloc(sizeof(t_token) * (1));
+	(*lst) = ft_malloc(sizeof(t_token) * (1));
 	if (!lst)
 		return ;
 	(*lst)->word = ft_strdup(cmd[0]);

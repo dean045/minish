@@ -6,7 +6,7 @@
 /*   By: vahemere <vahemere@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/05 18:14:41 by vahemere          #+#    #+#             */
-/*   Updated: 2022/07/22 01:56:57 by vahemere         ###   ########.fr       */
+/*   Updated: 2022/07/23 00:15:17 by vahemere         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,13 @@
 
 /*####################### STRUCTURES #######################*/
 
-extern struct s_exec *utils;
+extern struct s_all	all;
+
+typedef struct	s_mem
+{
+	struct s_mem	*next;
+	void			*addr;
+}				t_mem;
 
 typedef struct s_exec
 {
@@ -47,6 +53,13 @@ typedef struct s_exec
 	struct s_node	*node_tmp;
 	struct s_token	*token_tmp;
 }			t_exec;
+
+typedef struct	s_all
+{
+	t_mem	*g_mem;
+	t_exec	*utils;
+}				t_all;
+
 
 typedef struct s_node
 {
@@ -215,6 +228,9 @@ int		len_darr(char **arr);
 int		isdigits(char c);
 int		is_last(t_token *token);
 int		ft_atoi(char *str);
+void    *ft_malloc(size_t size);
+void    ft_free(void *addr);
+void    ft_free_all();
 
 	/*### CLEANING ###*/
 void	free_double_array(char **arr);

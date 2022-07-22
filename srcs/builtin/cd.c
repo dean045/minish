@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cd.c                                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: brhajji- <brhajji-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: vahemere <vahemere@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/24 12:40:01 by brhajji-          #+#    #+#             */
-/*   Updated: 2022/07/22 01:11:47 by brhajji-         ###   ########.fr       */
+/*   Updated: 2022/07/23 00:21:09 by vahemere         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,6 @@ void change_env_dir(t_exec	*utils, char *path)
 	{
 		if (!strncmp(temp->content, "PWD=", 4))
 		{
-			//free(temp->content);
 			temp->content = ft_strjoin("PWD=", path);
 			return ;
 		}
@@ -54,11 +53,11 @@ int	cd(char *path, t_exec *utils)
 	utils->envp_lst = init_lst_env(utils->envp, utils);
 	if (!path)
 	{
-		tmp = get_home(utils);
+		tmp = get_home( utils);
 		if (tmp)
 		{
-			chdir(get_home(utils) + 5);
-			change_env_dir(utils, get_home(utils) + 5);
+			chdir(get_home( utils) + 5);
+			change_env_dir( utils, get_home( utils) + 5);
 			return (0);	
 		}
 		else
@@ -70,7 +69,7 @@ int	cd(char *path, t_exec *utils)
 	else if (opendir(path))
 	{
 		chdir(path);
-		change_env_dir(utils, path);
+		change_env_dir( utils, path);
 		utils->err = 0;
 		return (0);
 	}

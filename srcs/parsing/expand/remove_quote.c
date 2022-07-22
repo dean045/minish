@@ -6,7 +6,7 @@
 /*   By: vahemere <vahemere@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/29 20:52:39 by vahemere          #+#    #+#             */
-/*   Updated: 2022/07/22 01:23:07 by vahemere         ###   ########.fr       */
+/*   Updated: 2022/07/22 23:39:30 by vahemere         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ static char	*put_word_without_quote(char *old, char *nw, t_quote *state)
 		nw[j++] = old[i];
 	}
 	nw[j] = '\0';
-	free(old);
+	ft_free(old);
 	old = NULL;
 	return (nw);
 }
@@ -45,7 +45,7 @@ static char	*malloc_word_without_quote(int len, char *old, t_quote *state)
 {
 	char	*nw;
 
-	nw = malloc(sizeof(char) * (len + 1));
+	nw = ft_malloc(sizeof(char) * (len + 1));
 	if (!nw)
 		return (NULL);
 	return (put_word_without_quote(old, nw, state));

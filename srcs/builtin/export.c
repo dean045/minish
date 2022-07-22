@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   export.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: brhajji- <brhajji-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: vahemere <vahemere@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/26 15:34:49 by brhajji-          #+#    #+#             */
-/*   Updated: 2022/07/20 01:59:18 by brhajji-         ###   ########.fr       */
+/*   Updated: 2022/07/22 23:39:30 by vahemere         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,8 +53,8 @@ void free_env(char **envp, int size)
 
 	i = -1;
 	while (++i <= size)
-		free(envp[size]);
-	free(envp);
+		ft_free(envp[size]);
+	ft_free(envp);
 	envp = NULL;
 }
 
@@ -75,7 +75,7 @@ int	export(char *var, t_exec **utils)
 	int		i;
 	t_env	*tmp;
 	
-	tmp = malloc(sizeof(t_env));
+	tmp = ft_malloc(sizeof(t_env));
 	if (!tmp)
 		return (-1);
 	if (var && *var == '$')
@@ -89,7 +89,7 @@ int	export(char *var, t_exec **utils)
 	if (!var)
 	{
 		print_tab(sort_tab((*utils)->envp, size_tab((*utils)->envp)));
-		free(tmp);
+		ft_free(tmp);
 		return (0);
 	}
 	else if (!check_parsing(var))

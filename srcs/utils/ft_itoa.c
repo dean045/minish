@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_itoa.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: brhajji- <brhajji-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: vahemere <vahemere@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/16 15:43:02 by brhajji-          #+#    #+#             */
-/*   Updated: 2022/06/16 15:43:09 by brhajji-         ###   ########.fr       */
+/*   Updated: 2022/07/22 23:39:13 by vahemere         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ static char	*convert(int n, int taille, int signe)
 	char			*str;
 	unsigned int	x;
 
-	str = malloc(sizeof(char) * (taille + 1));
+	str = ft_malloc(sizeof(char) * (taille + 1));
 	if (!str)
 		return (NULL);
 	if (signe)

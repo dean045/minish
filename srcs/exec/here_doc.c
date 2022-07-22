@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   here_doc.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: brhajji- <brhajji-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: vahemere <vahemere@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/16 14:33:41 by brhajji-          #+#    #+#             */
-/*   Updated: 2022/07/20 21:20:06 by brhajji-         ###   ########.fr       */
+/*   Updated: 2022/07/23 00:14:57 by vahemere         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,20 +20,20 @@ void	here_doc(char *limiter, t_node *node, int i)
 
 	num_str = ft_itoa(i);
 	node->here_doc = ft_strjoin(".here_doc_tmp", num_str);
-	free(num_str);
+	ft_free(num_str);
 	node->here_doc_fd = open(node->here_doc, O_CREAT | O_RDWR | O_TRUNC, 0644);
 	if (node->here_doc_fd == -1)
 		return ;
 	x = dup(0);
-	while (1 && utils->can_run == 1)
+	while (1 && all.utils->can_run == 1)
 	{
 		buff = readline("> ");
-		if (!buff && utils->can_run != 0)
+		if (!buff && all.utils->can_run != 0)
 		{
 			write(2, "warning: here-document delimited by end-of-file.\n", 49);
 			break;
 		}
-		if (utils->can_run == 0)
+		if (all.utils->can_run == 0)
 		{
 			dup2(x, 0);
 			break ;
@@ -47,7 +47,7 @@ void	here_doc(char *limiter, t_node *node, int i)
 		}
 	}
 	//close(node->here_doc_fd);
-	free(buff);
+	ft_free(buff);
 }
 
 void here_doc_init(t_node *node, t_token *token)
@@ -55,9 +55,9 @@ void here_doc_init(t_node *node, t_token *token)
 	int	i;
 
 	i = 1;
-	utils->on_here_doc = 1;
+	all.utils->on_here_doc = 1;
 	handle_sig();
-	while (token && token->type != PIPE && ++i && utils->can_run == 1)
+	while (token && token->type != PIPE && ++i && all.utils->can_run == 1)
 	{
 		if (token && token->type == DR_IN && token->next && token->next->type == LIMITOR)
 		{
@@ -70,6 +70,6 @@ void here_doc_init(t_node *node, t_token *token)
 		}
 		token = token->next;
 	}
-	utils->on_here_doc = 0;
+	all.utils->on_here_doc = 0;
 	handle_sig();
 }

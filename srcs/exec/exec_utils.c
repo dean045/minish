@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exec_utils.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: brhajji- <brhajji-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: vahemere <vahemere@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/09 16:04:55 by brhajji-          #+#    #+#             */
-/*   Updated: 2022/07/20 21:26:29 by brhajji-         ###   ########.fr       */
+/*   Updated: 2022/07/22 23:39:13 by vahemere         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ char	**get_arg(t_token *token)
 
 	i = 0;
 	nb_arg = get_nb_arg(token);
-	arg = malloc(sizeof(char *) * (nb_arg + 1));
+	arg = ft_malloc(sizeof(char *) * (nb_arg + 1));
 	*arg = token->word;
 	while (token && token->type != ARG && token->type != PIPE)
 		token = token->next;

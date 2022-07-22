@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   export_parsing.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: brhajji- <brhajji-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: vahemere <vahemere@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/10 23:29:23 by brhajji-          #+#    #+#             */
-/*   Updated: 2022/07/20 02:10:39 by brhajji-         ###   ########.fr       */
+/*   Updated: 2022/07/22 23:39:13 by vahemere         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ char	*plus_egale(char *str, char *var, int egale)
 
 	i = -1;
 	size = ft_strlen(str) + ft_strlen(var + egale + 2);
-	rendu = malloc(sizeof(char) * (size + 1));
+	rendu = ft_malloc(sizeof(char) * (size + 1));
 	if (!rendu)
 		return (NULL);
 	while (str[++i])

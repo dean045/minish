@@ -6,7 +6,7 @@
 /*   By: vahemere <vahemere@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/09 23:58:11 by vahemere          #+#    #+#             */
-/*   Updated: 2022/06/24 19:18:48 by vahemere         ###   ########.fr       */
+/*   Updated: 2022/07/22 23:39:13 by vahemere         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ char	*put_in_tab(char const *s, char c)
 	i = 0;
 	while (s[i] && is_sep((char)s[i], c))
 		i++;
-	tab = malloc(sizeof(*tab) * (i + 1));
+	tab = ft_malloc(sizeof(*tab) * (i + 1));
 	if (!tab)
 		return (NULL);
 	i = -1;
@@ -60,7 +60,7 @@ char	**ft_split(char *s, char c)
 	i = 0;
 	if (!s)
 		return (NULL);
-	tab = malloc(sizeof(*tab) * (number_words(s, c) + 1));
+	tab = ft_malloc(sizeof(*tab) * (number_words(s, c) + 1));
 	if (!tab)
 		return (NULL);
 	while (s[i] && !is_sep((char)s[i], c))

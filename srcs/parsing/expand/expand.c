@@ -6,7 +6,7 @@
 /*   By: vahemere <vahemere@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/21 15:31:55 by vahemere          #+#    #+#             */
-/*   Updated: 2022/07/22 01:32:09 by vahemere         ###   ########.fr       */
+/*   Updated: 2022/07/22 23:39:13 by vahemere         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,7 @@ void	expand(t_token **lst, t_quote *state, char **env)
 	t_token		*save;
 	t_expand	*exp;
 
-	exp = malloc(sizeof(t_expand));
+	exp = ft_malloc(sizeof(t_expand));
 	if (!exp)
 		return ;
 	tmp = (*lst);

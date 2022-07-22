@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   manage_export.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: brhajji- <brhajji-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: vahemere <vahemere@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/30 02:28:43 by brhajji-          #+#    #+#             */
-/*   Updated: 2022/07/19 04:25:51 by brhajji-         ###   ########.fr       */
+/*   Updated: 2022/07/23 00:20:07 by vahemere         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ char	**lst_to_char_env(t_env *lst)
 			i++;
 		tmp = tmp->next;
 	}
-	rendu = malloc(sizeof(char *) * (i + 1));
+	rendu = ft_malloc(sizeof(char *) * (i + 1));
 	if (!rendu)
 		return (NULL);
 	i = -1;
@@ -71,14 +71,14 @@ t_env	*edit_var_lst(t_exec *utils, char *var, int	join)
 		{
 			if (!join)
 			{
-				free(tmp->content);
+				ft_free(tmp->content);
 				tmp->content = var;
 			}
 			else if (join == 1)
 			{
 				char_tmp = plus_egale(tmp->content, var, pos_equal(var));
-				free(tmp->content);
-				free(var);
+				ft_free(tmp->content);
+				ft_free(var);
 				tmp->content= char_tmp;
 			}
 			tmp->type = 3;

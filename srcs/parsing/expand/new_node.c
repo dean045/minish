@@ -6,7 +6,7 @@
 /*   By: vahemere <vahemere@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/30 06:22:54 by vahemere          #+#    #+#             */
-/*   Updated: 2022/07/01 00:51:30 by vahemere         ###   ########.fr       */
+/*   Updated: 2022/07/22 23:39:30 by vahemere         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ void	add_back_new_node(char **insert, t_token *back, t_token *next, int len)
 	i = 0;
 	while (++i < len)
 	{
-		tmp = malloc(sizeof(t_token) * (1));
+		tmp = ft_malloc(sizeof(t_token) * (1));
 		if (!tmp)
 			return ;
 		if (back)
@@ -44,7 +44,7 @@ void	replace_old_node(t_token **old_node, char **to_insert)
 	len = len_darr(to_insert);
 	back = (*old_node)->back;
 	next = (*old_node)->next;
-	free((*old_node)->word);
+	ft_free((*old_node)->word);
 	(*old_node)->word = ft_strdup(to_insert[0]);
 	if (len > 1)
 	{

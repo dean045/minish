@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   env.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: brhajji- <brhajji-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: vahemere <vahemere@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/24 15:09:32 by brhajji-          #+#    #+#             */
-/*   Updated: 2022/07/22 01:12:11 by brhajji-         ###   ########.fr       */
+/*   Updated: 2022/07/23 00:20:45 by vahemere         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ char	**lst_to_char(t_env *lst)
 		i++;
 		tmp = tmp->next;	
 	}
-	rendu = malloc(sizeof(char *) * (i + 1));
+	rendu = ft_malloc(sizeof(char *) * (i + 1));
 	if (!rendu)
 		return (NULL);
 	i = -1;
@@ -74,7 +74,7 @@ t_env	*ft_new_env(char *content)
 {
 	t_env	*new;
 
-	new = malloc(sizeof(t_env));
+	new = ft_malloc(sizeof(t_env));
 	if (!new)
 		return (NULL);
 	new->next = NULL;
@@ -94,7 +94,7 @@ t_env	*init_lst_env(char **envp, t_exec *utils)
 	i = -1;
 	size = env_size(envp);
 	rendu = NULL;
-	(void)(utils);
+	(void)( utils);
 	while (++i < size)
 	{
 		tmp = ft_new_env(ft_strcpy(envp[i]));

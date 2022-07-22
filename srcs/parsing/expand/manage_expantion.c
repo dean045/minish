@@ -6,7 +6,7 @@
 /*   By: vahemere <vahemere@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/03 05:46:07 by vahemere          #+#    #+#             */
-/*   Updated: 2022/07/22 13:46:29 by vahemere         ###   ########.fr       */
+/*   Updated: 2022/07/23 00:14:57 by vahemere         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ void	len_for_expand(t_token **exp, t_quote *st, char **env, int *len)
 		{
 			if ((*exp)->word[j + 1] && (*exp)->word[j + 1] == '?')
 			{
-				(*len) += ft_strlen(utils->errchar);
+				(*len) += ft_strlen(all.utils->errchar);
 				j += 2;
 			}
 			else
@@ -73,7 +73,7 @@ char	*malloc_for_expand(t_token **exp, t_quote *st, char **env)
 	len = 0;
 	st->found = 0;
 	len_for_expand(exp, st, env, &len);
-	str = malloc(sizeof(char) * (len + 1));
+	str = ft_malloc(sizeof(char) * (len + 1));
 	if (!str)
 		return (0);
 	return (str);
@@ -87,7 +87,7 @@ void	manage_expantion(t_token **expnd, t_quote *st, char **nv, t_expand *exp)
 	exp->str = malloc_for_expand(expnd, st, nv);
 	if (!exp->str)
 		return ;
-	utils->errchar = ft_itoa(utils->err);
+	all.utils->errchar = ft_itoa(all.utils->err);
 	st->is_quote = 0;
 	st->is_dquote = 0;
 	type_expantion(expnd, st, nv, exp);
@@ -99,7 +99,7 @@ void	manage_expantion(t_token **expnd, t_quote *st, char **nv, t_expand *exp)
 		(*expnd)->word = remove_quote(exp->str, st);
 		return ;
 	}
-	free(exp->str);
+	ft_free(exp->str);
 	exp->str = NULL;
 	replace_old_node(expnd, expanded);
 }

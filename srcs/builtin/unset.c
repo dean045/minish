@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   unset.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: brhajji- <brhajji-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: vahemere <vahemere@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/26 15:34:45 by brhajji-          #+#    #+#             */
-/*   Updated: 2022/07/20 02:11:50 by brhajji-         ###   ########.fr       */
+/*   Updated: 2022/07/23 00:21:35 by vahemere         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ int	unset(char *var, t_exec *utils)
 			if (tmp_lst->next && !strncmp(tmp_lst->next->content, var, size))
 			{
 				tmp = tmp_lst->next->next;
-				free(tmp_lst->next);
+				ft_free(tmp_lst->next);
 				tmp_lst->next = NULL;
 				tmp_lst->next = tmp;
 				break ;

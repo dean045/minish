@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   echo.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: brhajji- <brhajji-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: vahemere <vahemere@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/12 02:04:19 by brhajji-          #+#    #+#             */
-/*   Updated: 2022/07/22 01:11:59 by brhajji-         ###   ########.fr       */
+/*   Updated: 2022/07/23 00:14:57 by vahemere         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,6 +72,6 @@ int	echo(t_token *token)
 	if (i > 1)
 		n = 1;
 	print_echo(i, nb_arg, n, args);
-	utils->err = 0;
+	all.utils->err = 0;
 	return (0);
 }

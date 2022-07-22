@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exit.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: brhajji- <brhajji-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: vahemere <vahemere@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/27 15:47:02 by brhajji-          #+#    #+#             */
-/*   Updated: 2022/07/22 01:16:04 by brhajji-         ###   ########.fr       */
+/*   Updated: 2022/07/23 00:21:44 by vahemere         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,7 @@ void	ft_exit(t_exec *utils)
 	int	x;
 
 	x = utils->err;
-	clean(utils);
+	clean( utils);
+	ft_free_all();
 	exit(x);
 }

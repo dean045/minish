@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cleaning.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: brhajji- <brhajji-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: vahemere <vahemere@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/06 18:22:13 by vahemere          #+#    #+#             */
-/*   Updated: 2022/07/20 01:34:34 by brhajji-         ###   ########.fr       */
+/*   Updated: 2022/07/23 00:18:03 by vahemere         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,10 +19,10 @@ void	free_double_array(char **arr)
 	i = -1;
 	while (arr[++i])
 	{
-		free(arr[i]);
+		ft_free(arr[i]);
 		arr[i] = NULL;
 	}
-	free(arr);
+	ft_free(arr);
 	arr = NULL;
 }
 
@@ -35,12 +35,11 @@ void	ft_free_node(t_node *node)
 		tmp = node;
 		node = node->next;
 		if (tmp->here_doc)
-			free(tmp->here_doc);
-		free(tmp);
+			ft_free(tmp->here_doc);
+		ft_free(tmp);
 		tmp = NULL;
 	}
 }
-
 
 void	ft_free_token(t_token *token)
 {
@@ -51,9 +50,9 @@ void	ft_free_token(t_token *token)
 		tmp = token;
 		token = token->next;
 		if (tmp && tmp->word)
-			free(tmp->word);
+			ft_free(tmp->word);
 		if (tmp)
-			free(tmp);
+			ft_free(tmp);
 		tmp = NULL;
 	}
 }
@@ -74,8 +73,8 @@ void clean(t_exec *utils)
 
 void	cleaning_parsing(t_expand *exp, t_quote *state)
 {	
-	free(exp);
+	ft_free(exp);
 	exp = NULL;
-	free(state);
+	ft_free(state);
 	state = NULL;
 }

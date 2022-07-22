@@ -6,7 +6,7 @@
 /*   By: vahemere <vahemere@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/03 06:07:41 by vahemere          #+#    #+#             */
-/*   Updated: 2022/07/21 00:46:47 by vahemere         ###   ########.fr       */
+/*   Updated: 2022/07/22 23:39:30 by vahemere         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,8 @@ int	free_lst(t_token *token)
 		tmp = token;
 		token = token->next;
 		if (tmp->word)
-			free(tmp->word);
-		free(tmp);
+			ft_free(tmp->word);
+		ft_free(tmp);
 		tmp = NULL;
 	}
 	return (0);

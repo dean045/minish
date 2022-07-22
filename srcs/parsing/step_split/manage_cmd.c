@@ -6,7 +6,7 @@
 /*   By: vahemere <vahemere@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/06 16:23:06 by vahemere          #+#    #+#             */
-/*   Updated: 2022/07/18 04:58:38 by vahemere         ###   ########.fr       */
+/*   Updated: 2022/07/22 23:39:30 by vahemere         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ static char	*put_in_tab(char *cmd_line, int *i, t_quote *state)
 
 	j = *i;
 	len_malloc_word(cmd_line, i, state);
-	words = malloc(sizeof(char) * ((*i - j) + 1));
+	words = ft_malloc(sizeof(char) * ((*i - j) + 1));
 	if (!words)
 		return (NULL);
 	state->is_dquote = 0;
@@ -104,12 +104,12 @@ t_token	*manage_cmd(char *cmd_line, char **env)
 
 	if (!first_check(cmd_line))
 		return (NULL);
-	state = malloc(sizeof(t_quote));
+	state = ft_malloc(sizeof(t_quote));
 	if (!state)
 		return (NULL);
 	if (!check_quote(cmd_line, state))
 		return (NULL);
-	arr = malloc(sizeof(char *) * (nb_words(cmd_line, state) + 1));
+	arr = ft_malloc(sizeof(char *) * (nb_words(cmd_line, state) + 1));
 	if (!arr)
 		return (NULL);
 	state->is_dquote = 0;
@@ -118,7 +118,7 @@ t_token	*manage_cmd(char *cmd_line, char **env)
 	tokenizer(arr, &lst, nb_words(cmd_line, state));
 	if (!syntax_check(&lst))
 	{
-		free(state);
+		ft_free(state);
 		return (NULL);
 	}
 	expand(&lst, state, env);

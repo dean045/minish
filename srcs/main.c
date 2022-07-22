@@ -3,16 +3,21 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: brhajji- <brhajji-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: vahemere <vahemere@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/05 18:14:25 by vahemere          #+#    #+#             */
-/*   Updated: 2022/07/22 01:13:19 by brhajji-         ###   ########.fr       */
+/*   Updated: 2022/07/23 00:17:12 by vahemere         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
 
-t_exec *utils = NULL;
+t_all all;
+
+void	init_all()
+{
+	all.g_mem = NULL;
+}
 
 void ctrl_c(int test)
 {
@@ -28,14 +33,14 @@ void    ctrl_c_here(int sig)
     (void)sig;
     write(2, "\n", 1);
 	close(0);
-	utils->can_run = 0;
-	utils->on_here_doc = 0;
-	utils->err = 130;
+	all.utils->can_run = 0;
+	all.utils->on_here_doc = 0;
+	all.utils->err = 130;
 }
 
 void	handle_sig()
 {
-	if (utils->on_here_doc == 1)
+	if (all.utils->on_here_doc == 1)
 		signal(SIGINT, &ctrl_c_here);
 	else
 	{
@@ -55,26 +60,27 @@ int	main(int ac, char **av, char **envp)
 		printf("Error:	to many arguments.\n");
 		return (1);
 	}
-	utils = init_exec(envp);
+	all.utils = init_exec(envp);
 	while (1)
 	{
 		handle_sig();
-		ret = readline("\033[0;35mminishell\033[0m\033[0;32m$>\033[0m ");
+		ret = readline("\001\033[0;35m\002minishell\001\033[0m\033[0;32m ✗\033[0m\002 ");
 		if (!ret)
 		{
 			printf("exit\n");
+			ft_free_all();
 			exit(0);
 		}
 		else if (ft_strlen(ret) != 0)
 		{
-			token = manage_cmd(ret, utils->envp);
+			token = manage_cmd(ret, all.utils->envp);
 			if (ret && *ret)
 				add_history(ret);
-			free(ret);
-			refresh(token, utils);
-			if (utils && utils->can_run == 1)
-				exec(token, utils);
-			clean(utils);
+			ft_free(ret);
+			refresh(token, all.utils);
+			if ( all.utils && all.utils->can_run == 1)
+				exec(token, all.utils);
+			clean( all.utils);
 		}
 	}
 	return (0);

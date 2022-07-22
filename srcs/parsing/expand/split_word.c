@@ -6,7 +6,7 @@
 /*   By: vahemere <vahemere@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/13 19:49:06 by vahemere          #+#    #+#             */
-/*   Updated: 2022/07/18 02:50:40 by vahemere         ###   ########.fr       */
+/*   Updated: 2022/07/22 23:39:13 by vahemere         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,7 @@ char	*malloc_word(char *word, t_quote *state)
 			j++;
 		}
 	}
-	str = malloc(sizeof(char) * (j + 1));
+	str = ft_malloc(sizeof(char) * (j + 1));
 	if (!str)
 		return (NULL);
 	return (copy_word(word, state, str));
@@ -100,7 +100,7 @@ char	**split_word(char *word, t_quote *state)
 	int		j;
 	char	**arr;
 
-	arr = malloc(sizeof(char *) * (len_d_array(word, state) + 1));
+	arr = ft_malloc(sizeof(char *) * (len_d_array(word, state) + 1));
 	if (!arr)
 		return (NULL);
 	i = -1;

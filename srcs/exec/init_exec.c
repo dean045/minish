@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_exec.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: brhajji- <brhajji-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: vahemere <vahemere@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/13 10:58:02 by brhajji-          #+#    #+#             */
-/*   Updated: 2022/07/22 01:12:55 by brhajji-         ###   ########.fr       */
+/*   Updated: 2022/07/23 00:19:51 by vahemere         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,6 @@ int	nb_node(t_token *token)
 			x++;
 		token = token->next;
 	}
-	//printf("nb node = %i\n", x);
 	return (x);
 }
 
@@ -56,12 +55,12 @@ t_exec	*init_exec(char **envp)
 {
 	t_exec *utils1;
 	
-	utils1 = malloc(sizeof(t_exec ));
+	utils1 = ft_malloc(sizeof(t_exec ));
 	if (!utils1)
 		return (NULL);
 	if (!utils1)
 	{
-		free(utils1);
+		ft_free(utils1);
 		return (NULL);
 	}
 	utils1->err = 0;
@@ -87,7 +86,7 @@ void	refresh(t_token *token, t_exec *utils)
 	i = -1;
 	while (++i < utils->nb_node)
 	{
-		node = malloc(sizeof(t_node ));
+		node = ft_malloc(sizeof(t_node ));
 		node->num = i;
 		node->here_doc_fd = -1;
 		node->here_doc = NULL;
@@ -105,7 +104,6 @@ void	refresh(t_token *token, t_exec *utils)
 		if (token)
 			token = token->next;
 		utils->node = ft_lstadd_back((utils->node), node);
-		//printf("num ava = %i\n", (*utils)->node->num);
 	}
 	token = utils->token_tmp;
 	utils->node_tmp = utils->node;
