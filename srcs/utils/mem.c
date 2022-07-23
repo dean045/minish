@@ -6,7 +6,7 @@
 /*   By: vahemere <vahemere@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/23 00:05:59 by vahemere          #+#    #+#             */
-/*   Updated: 2022/07/23 16:24:28 by vahemere         ###   ########.fr       */
+/*   Updated: 2022/07/23 19:43:02 by vahemere         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,11 +20,11 @@ void	add_mem(void *addr)
 	new_mem = malloc(sizeof(t_mem));
 	new_mem->addr = addr;
 	new_mem->next = NULL;
-	if (all.g_mem == NULL)
-		all.g_mem = new_mem;
+	if (g_all.g_mem == NULL)
+		g_all.g_mem = new_mem;
 	else
 	{
-		tmp = all.g_mem;
+		tmp = g_all.g_mem;
 		while (tmp->next)
 			tmp = tmp->next;
 		tmp->next = new_mem;
@@ -46,7 +46,7 @@ void	ft_free(void *addr)
 	t_mem	*ex;
 	t_mem	*next;
 
-	tmp = all.g_mem;
+	tmp = g_all.g_mem;
 	ex = NULL;
 	while (tmp)
 	{
@@ -58,7 +58,7 @@ void	ft_free(void *addr)
 			if (ex)
 				ex->next = next;
 			else
-				all.g_mem = next;
+				g_all.g_mem = next;
 			return ;
 		}
 		ex = tmp;
@@ -71,7 +71,7 @@ void	ft_free_all(void)
 	t_mem	*tmp;
 	t_mem	*next;
 
-	tmp = all.g_mem;
+	tmp = g_all.g_mem;
 	while (tmp)
 	{
 		next = tmp->next;

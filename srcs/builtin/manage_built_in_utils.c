@@ -6,7 +6,7 @@
 /*   By: vahemere <vahemere@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/23 16:29:05 by vahemere          #+#    #+#             */
-/*   Updated: 2022/07/23 16:43:05 by vahemere         ###   ########.fr       */
+/*   Updated: 2022/07/23 19:39:03 by vahemere         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,12 +16,12 @@ int	manage_built_in1(t_token *token)
 {
 	if (!ft_strcmp(token->word, "pwd"))
 	{
-		pwd(all.utils->envp);
+		pwd(g_all.utils->envp);
 		return (1);
 	}
 	else if (!ft_strcmp(token->word, "env"))
 	{
-		env(all.utils);
+		env(g_all.utils);
 		return (1);
 	}
 	else if (!ft_strcmp(token->word, "echo"))
@@ -37,13 +37,13 @@ int	manage_built_in2(t_token *token)
 	if (!ft_strcmp(token->word, "cd"))
 	{
 		if (get_nb_arg(token) == 2)
-			cd(token->next->word, all.utils);
+			cd(token->next->word, g_all.utils);
 		else if (get_nb_arg(token) == 1)
-			cd(NULL, all.utils);
+			cd(NULL, g_all.utils);
 		else
 		{
 			write(2, "cd: too many arguments", 23);
-			all.utils->err = 1;
+			g_all.utils->err = 1;
 		}
 		return (1);
 	}
@@ -75,7 +75,7 @@ int	manage_built_in4(t_token *token)
 	{
 		while (token->next && token->next->type == ARG)
 		{
-			unset(token->next->word, all.utils);
+			unset(token->next->word, g_all.utils);
 			token = token->next;
 		}
 		return (1);

@@ -6,7 +6,7 @@
 /*   By: vahemere <vahemere@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/30 02:28:43 by brhajji-          #+#    #+#             */
-/*   Updated: 2022/07/23 17:34:03 by vahemere         ###   ########.fr       */
+/*   Updated: 2022/07/23 19:39:23 by vahemere         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,11 +85,11 @@ t_env	*edit_var_lst_run(t_env *tmp, char *var, int join, char *char_tmp)
 				tmp->content = char_tmp;
 			}
 			tmp->type = 3;
-			return (all.utils->envp_lst);
+			return (g_all.utils->envp_lst);
 		}
 		tmp = tmp->next;
 	}
-	return (all.utils->envp_lst);
+	return (g_all.utils->envp_lst);
 }
 
 t_env	*edit_var_lst(t_exec *utils, char *var, int join)

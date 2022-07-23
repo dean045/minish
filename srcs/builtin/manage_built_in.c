@@ -6,7 +6,7 @@
 /*   By: vahemere <vahemere@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/27 01:50:59 by brhajji-          #+#    #+#             */
-/*   Updated: 2022/07/23 16:46:22 by vahemere         ###   ########.fr       */
+/*   Updated: 2022/07/23 19:39:13 by vahemere         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,7 @@ int	manage_built_in(t_token *token, t_exec *utils)
 	else if (manage_built_in4(token))
 		return (1);
 	else if (!ft_strcmp(token->word, "exit"))
-		ft_exit(all.utils);
+		ft_exit(g_all.utils);
 	return (1);
 }
 

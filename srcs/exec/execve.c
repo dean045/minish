@@ -6,7 +6,7 @@
 /*   By: vahemere <vahemere@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/09 15:46:20 by brhajji-          #+#    #+#             */
-/*   Updated: 2022/07/23 16:10:03 by vahemere         ###   ########.fr       */
+/*   Updated: 2022/07/23 19:40:09 by vahemere         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -124,21 +124,21 @@ void	exec(t_token *token, t_exec *utils)
 	num = 0;
 	x = 0;
 	fd[0] = 0;
-	pid = ft_malloc(sizeof(pid_t) * (all.utils->nb_cmd + 1));
-	while (++i < all.utils->nb_node)
+	pid = ft_malloc(sizeof(pid_t) * (g_all.utils->nb_cmd + 1));
+	while (++i < g_all.utils->nb_node)
 	{
-		if (all.utils->node && all.utils->node->has_cmd == 1)
+		if (g_all.utils->node && g_all.utils->node->has_cmd == 1)
 		{
 			while (token && token->type != CMD)
 				token = token->next;
-			all.utils->previous_fd = fd[0];
-			if (all.utils->nb_cmd > 1)
+			g_all.utils->previous_fd = fd[0];
+			if (g_all.utils->nb_cmd > 1)
 				if (pipe(fd) < 0)
 					return (perror("Pipe "));
-			if (all.utils->node->in != -2)
+			if (g_all.utils->node->in != -2)
 			{
-				if (is_built_in(token) == 1 && all.utils->nb_cmd == 1)
-					manage_built_in(token, all.utils);
+				if (is_built_in(token) == 1 && g_all.utils->nb_cmd == 1)
+					manage_built_in(token, g_all.utils);
 				else
 				{
 					pid[x] = run(token, fd, num, *utils);
@@ -147,20 +147,20 @@ void	exec(t_token *token, t_exec *utils)
 			}
 			num++;
 		}
-		all.utils->node = all.utils->node->next;
+		g_all.utils->node = g_all.utils->node->next;
 		token = go_next(token);
-		if (all.utils->nb_cmd > 1 && fd[1] > 0)
+		if (g_all.utils->nb_cmd > 1 && fd[1] > 0)
 			close(fd[1]);
-		if (all.utils->previous_fd > 0)
-			close(all.utils->previous_fd);
+		if (g_all.utils->previous_fd > 0)
+			close(g_all.utils->previous_fd);
 	}
 	while (--x >= 0)
 	{
 		waitpid(pid[x], &status, 0);
 		if (WIFEXITED(status))
-			all.utils->err = WEXITSTATUS(status);
+			g_all.utils->err = WEXITSTATUS(status);
 		if (WIFSIGNALED(status))
-			all.utils->err = WTERMSIG(status);
+			g_all.utils->err = WTERMSIG(status);
 	}
 	ft_free(pid);
 }

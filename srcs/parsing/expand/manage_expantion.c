@@ -6,7 +6,7 @@
 /*   By: vahemere <vahemere@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/03 05:46:07 by vahemere          #+#    #+#             */
-/*   Updated: 2022/07/23 15:33:57 by vahemere         ###   ########.fr       */
+/*   Updated: 2022/07/23 19:41:51 by vahemere         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ void	len_for_expand(t_token **exp, t_quote *st, char **env, int *len)
 		{
 			if ((*exp)->word[j + 1] && (*exp)->word[j + 1] == '?')
 			{
-				(*len) += ft_strlen(all.utils->errchar);
+				(*len) += ft_strlen(g_all.utils->errchar);
 				j += 2;
 			}
 			else
@@ -84,7 +84,7 @@ void	manage_expantion(t_token **expnd, t_quote *st, char **nv, t_expand *exp)
 	char	**expanded;
 
 	exp->len = 0;
-	all.utils->errchar = ft_itoa(all.utils->err);
+	g_all.utils->errchar = ft_itoa(g_all.utils->err);
 	exp->str = malloc_for_expand(expnd, st, nv);
 	if (!exp->str)
 		return ;

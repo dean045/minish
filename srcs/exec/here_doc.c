@@ -6,7 +6,7 @@
 /*   By: vahemere <vahemere@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/16 14:33:41 by brhajji-          #+#    #+#             */
-/*   Updated: 2022/07/23 16:18:47 by vahemere         ###   ########.fr       */
+/*   Updated: 2022/07/23 19:40:29 by vahemere         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,15 +17,15 @@ void	here_doc_run(char *limiter, t_node *node, char *buff)
 	int		x;
 
 	x = dup(0);
-	while (1 && all.utils->can_run == 1)
+	while (1 && g_all.utils->can_run == 1)
 	{
 		buff = readline("> ");
-		if (!buff && all.utils->can_run != 0)
+		if (!buff && g_all.utils->can_run != 0)
 		{
 			write(2, "warning: here-document delimited by end-of-file.\n", 49);
 			break ;
 		}
-		if (all.utils->can_run == 0)
+		if (g_all.utils->can_run == 0)
 		{
 			dup2(x, 0);
 			break ;
@@ -61,9 +61,9 @@ void	here_doc_init(t_node *node, t_token *tk)
 	int	i;
 
 	i = 1;
-	all.utils->on_here_doc = 1;
+	g_all.utils->on_here_doc = 1;
 	handle_sig();
-	while (tk && tk->type != PIPE && ++i && all.utils->can_run == 1)
+	while (tk && tk->type != PIPE && ++i && g_all.utils->can_run == 1)
 	{
 		if (tk && tk->type == DR_IN && tk->next && tk->next->type == LIMITOR)
 		{
@@ -76,6 +76,6 @@ void	here_doc_init(t_node *node, t_token *tk)
 		}
 		tk = tk->next;
 	}
-	all.utils->on_here_doc = 0;
+	g_all.utils->on_here_doc = 0;
 	handle_sig();
 }

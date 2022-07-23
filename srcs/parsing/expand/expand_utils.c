@@ -6,7 +6,7 @@
 /*   By: vahemere <vahemere@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/27 20:07:52 by vahemere          #+#    #+#             */
-/*   Updated: 2022/07/23 00:14:57 by vahemere         ###   ########.fr       */
+/*   Updated: 2022/07/23 19:41:29 by vahemere         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,10 +44,10 @@ int	put_error_code(t_expand *exp)
 	int	i;
 
 	i = -1;
-	while (all.utils->errchar[++i])
-		exp->str[exp->len++] = all.utils->errchar[i];
-	ft_free(all.utils->errchar);
-	all.utils->errchar = NULL;
+	while (g_all.utils->errchar[++i])
+		exp->str[exp->len++] = g_all.utils->errchar[i];
+	ft_free(g_all.utils->errchar);
+	g_all.utils->errchar = NULL;
 	exp->found = 1;
 	return (2);
 }

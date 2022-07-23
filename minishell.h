@@ -6,7 +6,7 @@
 /*   By: vahemere <vahemere@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/05 18:14:41 by vahemere          #+#    #+#             */
-/*   Updated: 2022/07/23 17:46:44 by vahemere         ###   ########.fr       */
+/*   Updated: 2022/07/23 19:35:07 by vahemere         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@
 
 /*####################### STRUCTURES #######################*/
 
-extern struct s_all	all;
+extern struct s_all	g_all;
 
 typedef struct	s_mem
 {
@@ -124,7 +124,10 @@ typedef struct s_token
 
 /*### SIGNAL ###*/
 
-void	handle_sig();
+void	handle_sig(void);
+void	ctrl_c_here(int sig);
+void	ctrl_c(int test);
+void	init_all(void);
 
 /*### PARSING ###*/
 
@@ -197,7 +200,7 @@ int		manage_built_in2(t_token *token);
 int		manage_built_in3(t_token *token, t_exec *utils);
 int		manage_built_in4(t_token *token);
 char	**lst_to_char(t_env *lst);
-
+int		export_run(char *var, t_exec **utils, t_env *tmp, int i);
 t_env	*init_lst_env(char **envp, t_exec *utils);
 char	**lst_to_char(t_env *lst);
 t_env	*ft_envadd_back(t_env *lst, t_env *new);
