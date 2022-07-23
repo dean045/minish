@@ -6,24 +6,16 @@
 /*   By: vahemere <vahemere@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/16 14:33:41 by brhajji-          #+#    #+#             */
-/*   Updated: 2022/07/23 15:56:33 by vahemere         ###   ########.fr       */
+/*   Updated: 2022/07/23 16:18:47 by vahemere         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../minishell.h"
 
-void	here_doc(char *limiter, t_node *node, int i)
+void	here_doc_run(char *limiter, t_node *node, char *buff)
 {
-	char	*buff;
-	char	*num_str;
 	int		x;
 
-	num_str = ft_itoa(i);
-	node->here_doc = ft_strjoin(".here_doc_tmp", num_str);
-	ft_free(num_str);
-	node->here_doc_fd = open(node->here_doc, O_CREAT | O_RDWR | O_TRUNC, 0644);
-	if (node->here_doc_fd == -1)
-		return ;
 	x = dup(0);
 	while (1 && all.utils->can_run == 1)
 	{
@@ -46,6 +38,21 @@ void	here_doc(char *limiter, t_node *node, int i)
 			write(node->here_doc_fd, "\n", 1);
 		}
 	}
+}
+
+void	here_doc(char *limiter, t_node *node, int i)
+{
+	char	*buff;
+	char	*num_str;
+
+	buff = NULL;
+	num_str = ft_itoa(i);
+	node->here_doc = ft_strjoin(".here_doc_tmp", num_str);
+	ft_free(num_str);
+	node->here_doc_fd = open(node->here_doc, O_CREAT | O_RDWR | O_TRUNC, 0644);
+	if (node->here_doc_fd == -1)
+		return ;
+	here_doc_run(limiter, node, buff);
 	ft_free(buff);
 }
 
