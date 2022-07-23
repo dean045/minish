@@ -6,7 +6,7 @@
 /*   By: vahemere <vahemere@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/26 15:34:49 by brhajji-          #+#    #+#             */
-/*   Updated: 2022/07/22 23:39:30 by vahemere         ###   ########.fr       */
+/*   Updated: 2022/07/23 17:16:49 by vahemere         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ void	print_tab(char **tab)
 	}
 }
 
-void free_env(char **envp, int size)
+void	free_env(char **envp, int size)
 {
 	int	i;
 
@@ -60,7 +60,7 @@ void free_env(char **envp, int size)
 
 int	size_tab(char **tab)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	while (tab[i])
@@ -74,7 +74,7 @@ int	export(char *var, t_exec **utils)
 {
 	int		i;
 	t_env	*tmp;
-	
+
 	tmp = ft_malloc(sizeof(t_env));
 	if (!tmp)
 		return (-1);
@@ -95,7 +95,7 @@ int	export(char *var, t_exec **utils)
 	else if (!check_parsing(var))
 	{
 		tmp->content = ft_strcpy(var);
-		if (pos_equal(tmp->content) == - 1)
+		if (pos_equal(tmp->content) == -1)
 			tmp->type = 1;
 		else
 			tmp->type = 2;

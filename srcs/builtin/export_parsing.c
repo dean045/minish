@@ -6,7 +6,7 @@
 /*   By: vahemere <vahemere@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/10 23:29:23 by brhajji-          #+#    #+#             */
-/*   Updated: 2022/07/22 23:39:13 by vahemere         ###   ########.fr       */
+/*   Updated: 2022/07/23 17:15:19 by vahemere         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ int	check_parsing(char *str)
 	}
 	else
 	{
-		return (0);	
+		return (0);
 	}
 }
 

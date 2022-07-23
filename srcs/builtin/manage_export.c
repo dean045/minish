@@ -6,28 +6,17 @@
 /*   By: vahemere <vahemere@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/30 02:28:43 by brhajji-          #+#    #+#             */
-/*   Updated: 2022/07/23 00:20:07 by vahemere         ###   ########.fr       */
+/*   Updated: 2022/07/23 17:19:37 by vahemere         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../minishell.h"
 
-char	**lst_to_char_env(t_env *lst)
+char	**malloc_and_put_lst(t_env *lst, int i)
 {
-	int		i;
 	t_env	*tmp;
 	char	**rendu;
 
-	i = 0;
-	if (!lst || !lst->content)
-		return (NULL);
-	tmp = lst;
-	while (tmp)
-	{
-		if (tmp->type != 3)
-			i++;
-		tmp = tmp->next;
-	}
 	rendu = ft_malloc(sizeof(char *) * (i + 1));
 	if (!rendu)
 		return (NULL);
@@ -41,6 +30,24 @@ char	**lst_to_char_env(t_env *lst)
 	}
 	rendu[++i] = NULL;
 	return (rendu);
+}
+
+char	**lst_to_char_env(t_env *lst)
+{
+	int		i;
+	t_env	*tmp;
+
+	i = 0;
+	if (!lst || !lst->content)
+		return (NULL);
+	tmp = lst;
+	while (tmp)
+	{
+		if (tmp->type != 3)
+			i++;
+		tmp = tmp->next;
+	}
+	return (malloc_and_put_lst(lst, i));
 }
 
 int	pos_equal(char *str)
@@ -59,7 +66,7 @@ int	pos_equal(char *str)
 	return (x);
 }
 
-t_env	*edit_var_lst(t_exec *utils, char *var, int	join)
+t_env	*edit_var_lst(t_exec *utils, char *var, int join)
 {
 	t_env	*tmp;
 	char	*char_tmp;
@@ -79,7 +86,7 @@ t_env	*edit_var_lst(t_exec *utils, char *var, int	join)
 				char_tmp = plus_egale(tmp->content, var, pos_equal(var));
 				ft_free(tmp->content);
 				ft_free(var);
-				tmp->content= char_tmp;
+				tmp->content = char_tmp;
 			}
 			tmp->type = 3;
 			return (utils->envp_lst);

@@ -6,7 +6,7 @@
 /*   By: vahemere <vahemere@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/05 18:14:41 by vahemere          #+#    #+#             */
-/*   Updated: 2022/07/23 15:47:33 by vahemere         ###   ########.fr       */
+/*   Updated: 2022/07/23 16:42:58 by vahemere         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -192,6 +192,10 @@ int		export(char *var, t_exec **utils);
 int		unset(char *var, t_exec *utils);
 int		echo(t_token *token);
 void	ft_exit(t_exec *utils);
+int		manage_built_in1(t_token *token);
+int		manage_built_in2(t_token *token);
+int		manage_built_in3(t_token *token, t_exec *utils);
+int		manage_built_in4(t_token *token);
 
 t_env	*init_lst_env(char **envp, t_exec *utils);
 char	**lst_to_char(t_env *lst);

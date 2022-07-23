@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   pwd.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: brhajji- <brhajji-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: vahemere <vahemere@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/24 15:09:45 by brhajji-          #+#    #+#             */
-/*   Updated: 2022/06/27 02:54:58 by brhajji-         ###   ########.fr       */
+/*   Updated: 2022/07/23 17:15:50 by vahemere         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../minishell.h"
 
-int pwd(char **envp)
+int	pwd(char **envp)
 {
 	char	temp[1024];
 

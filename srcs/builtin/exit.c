@@ -6,7 +6,7 @@
 /*   By: vahemere <vahemere@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/27 15:47:02 by brhajji-          #+#    #+#             */
-/*   Updated: 2022/07/23 00:21:44 by vahemere         ###   ########.fr       */
+/*   Updated: 2022/07/23 16:54:25 by vahemere         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ void	ft_exit(t_exec *utils)
 	int	x;
 
 	x = utils->err;
-	clean( utils);
+	clean(utils);
 	ft_free_all();
 	exit(x);
 }
