@@ -6,7 +6,7 @@
 /*   By: vahemere <vahemere@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/30 02:28:43 by brhajji-          #+#    #+#             */
-/*   Updated: 2022/07/23 17:19:37 by vahemere         ###   ########.fr       */
+/*   Updated: 2022/07/23 17:34:03 by vahemere         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,12 +66,8 @@ int	pos_equal(char *str)
 	return (x);
 }
 
-t_env	*edit_var_lst(t_exec *utils, char *var, int join)
+t_env	*edit_var_lst_run(t_env *tmp, char *var, int join, char *char_tmp)
 {
-	t_env	*tmp;
-	char	*char_tmp;
-
-	tmp = utils->envp_lst;
 	while (tmp && var)
 	{
 		if (!strncmp(tmp->content, var, pos_equal(var)))
@@ -89,9 +85,19 @@ t_env	*edit_var_lst(t_exec *utils, char *var, int join)
 				tmp->content = char_tmp;
 			}
 			tmp->type = 3;
-			return (utils->envp_lst);
+			return (all.utils->envp_lst);
 		}
 		tmp = tmp->next;
 	}
-	return (utils->envp_lst);
+	return (all.utils->envp_lst);
+}
+
+t_env	*edit_var_lst(t_exec *utils, char *var, int join)
+{
+	t_env	*tmp;
+	char	*char_tmp;
+
+	char_tmp = NULL;
+	tmp = utils->envp_lst;
+	return (edit_var_lst_run(tmp, var, join, char_tmp));
 }
