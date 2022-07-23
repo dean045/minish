@@ -6,7 +6,7 @@
 /*   By: vahemere <vahemere@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/05 18:14:25 by vahemere          #+#    #+#             */
-/*   Updated: 2022/07/23 19:55:51 by vahemere         ###   ########.fr       */
+/*   Updated: 2022/07/23 20:05:14 by vahemere         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ t_all	g_all;
 void	launch_process(char *ret)
 {
 	t_token	*token;
-	
+
 	token = manage_cmd(ret, g_all.utils->envp);
 	if (ret && *ret)
 		add_history(ret);

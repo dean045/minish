@@ -6,7 +6,7 @@
 /*   By: vahemere <vahemere@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/05 18:14:41 by vahemere          #+#    #+#             */
-/*   Updated: 2022/07/23 19:35:07 by vahemere         ###   ########.fr       */
+/*   Updated: 2022/07/23 20:03:55 by vahemere         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@
 
 extern struct s_all	g_all;
 
-typedef struct	s_mem
+typedef struct s_mem
 {
 	struct s_mem	*next;
 	void			*addr;
@@ -40,7 +40,7 @@ typedef struct	s_mem
 
 typedef struct s_exec
 {
-	char 			**envp;
+	char			**envp;
 	struct s_env	*envp_lst;
 	int				nb_node;
 	int				err;
@@ -54,12 +54,11 @@ typedef struct s_exec
 	struct s_token	*token_tmp;
 }			t_exec;
 
-typedef struct	s_all
+typedef struct s_all
 {
 	t_mem	*g_mem;
 	t_exec	*utils;
 }				t_all;
-
 
 typedef struct s_node
 {
@@ -162,7 +161,7 @@ int		search_in_env_len(char *word, char **env, t_quote *state, int *len);
 char	*malloc_for_expand(t_token **to_expand, t_quote *state, char **env);
 char	*remove_quote(char *old, t_quote *state);
 int		sign(char c, t_quote *st);
-void	manage_expantion(t_token **expnd, t_quote *st, char **nv, t_expand *exp);
+void	manage_expantion(t_token **expn, t_quote *st, char **nv, t_expand *exp);
 int		single_quote_expantion(char *word, t_expand *exp);
 int		basic_expantion(char *w, t_expand *exp, char **nv, t_quote *state);
 char	**split_word(char *word, t_quote *state);
@@ -177,19 +176,18 @@ void	set_r_out(t_node *node, t_token *token);
 char	**get_path(char **envp);
 t_exec	*init_exec(char **envp);
 int		nb_cmd(t_token *token);
-void 	here_doc_init(t_node *node, t_token *token);
-t_token *go_next(t_token *token);
+void	here_doc_init(t_node *node, t_token *token);
+t_token	*go_next(t_token *token);
 int		get_nb_arg(t_token *token);
 void	refresh(t_token *token, t_exec *utils);
-t_env	*edit_var_lst(t_exec *utils, char *var, int	join);
+t_env	*edit_var_lst(t_exec *utils, char *var, int join);
 int		nb_node(t_token *token);
 t_node	*ft_lstadd_back(t_node *lst, t_node *new);
 
-	
 	/*###   BUILT IN  ###*/
 
 int		env(t_exec *utils);
-int 	pwd(char **envp);
+int		pwd(char **envp);
 int		cd(char *path, t_exec *utils);
 int		export(char *var, t_exec **utils);
 int		unset(char *var, t_exec *utils);
@@ -213,7 +211,7 @@ void	print_tab(char **tab);
 char	**sort_tab(char **tab, int size);
 int		size_tab(char **tab);
 void	no_fork(t_token *token, t_exec *utils);
-void 	free_env(char **envp, int size);
+void	free_env(char **envp, int size);
 int		check_parsing(char *str);
 char	*plus_egale(char *str, char *var, int egale);
 
@@ -239,18 +237,17 @@ int		len_darr(char **arr);
 int		isdigits(char c);
 int		is_last(t_token *token);
 int		ft_atoi(char *str);
-void    *ft_malloc(size_t size);
-void    ft_free(void *addr);
-void    ft_free_all();
+void	*ft_malloc(size_t size);
+void	ft_free(void *addr);
+void	ft_free_all(void);
 
 	/*### CLEANING ###*/
 void	free_double_array(char **arr);
 int		print_and_free(char *str, t_token **lst);
-void 	ft_free_node(t_node *node);
-void 	ft_free_token(t_token *token);
-void 	clean(t_exec *utils);
+void	ft_free_node(t_node *node);
+void	ft_free_token(t_token *token);
+void	clean(t_exec *utils);
 void	cleaning_parsing(t_expand *exp, t_quote *state);
 t_token	*cleaning_parsing_error(t_quote *state);
-
 
 #endif
