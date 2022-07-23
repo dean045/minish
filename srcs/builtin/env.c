@@ -6,41 +6,11 @@
 /*   By: vahemere <vahemere@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/24 15:09:32 by brhajji-          #+#    #+#             */
-/*   Updated: 2022/07/23 17:20:29 by vahemere         ###   ########.fr       */
+/*   Updated: 2022/07/23 17:44:47 by vahemere         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../minishell.h"
-
-char	**lst_to_char(t_env *lst)
-{
-	int		i;
-	t_env	*tmp;
-	char	**rendu;
-
-	i = 0;
-	if (!lst || !lst->content)
-		return (NULL);
-	tmp = lst;
-	while (tmp)
-	{
-		i++;
-		tmp = tmp->next;
-	}
-	rendu = ft_malloc(sizeof(char *) * (i + 1));
-	if (!rendu)
-		return (NULL);
-	i = -1;
-	tmp = lst;
-	while (tmp)
-	{
-		if (tmp->content)
-			rendu[++i] = ft_strcpy(tmp->content);
-		tmp = tmp->next;
-	}
-	rendu[++i] = NULL;
-	return (rendu);
-}
 
 int	env_size(char **envp)
 {

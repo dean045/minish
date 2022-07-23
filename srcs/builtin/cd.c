@@ -6,7 +6,7 @@
 /*   By: vahemere <vahemere@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/24 12:40:01 by brhajji-          #+#    #+#             */
-/*   Updated: 2022/07/23 17:22:32 by vahemere         ###   ########.fr       */
+/*   Updated: 2022/07/23 17:43:23 by vahemere         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,23 @@ char	*get_home(t_exec *utils)
 	return (NULL);
 }
 
+int	manage_open_cd(char *path, t_exec *utils)
+{
+	if (opendir(path))
+	{
+		chdir(path);
+		change_env_dir(utils, path);
+		utils->err = 0;
+		return (0);
+	}
+	else
+	{
+		perror("cd");
+		utils->err = 1;
+	}
+	return (1);
+}
+
 int	cd(char *path, t_exec *utils)
 {
 	char	*tmp;
@@ -67,17 +84,7 @@ int	cd(char *path, t_exec *utils)
 			utils->err = 1;
 		}
 	}
-	else if (opendir(path))
-	{
-		chdir(path);
-		change_env_dir(utils, path);
-		utils->err = 0;
+	if (!manage_open_cd(path, utils))
 		return (0);
-	}
-	else
-	{
-		perror("cd");
-		utils->err = 1;
-	}
 	return (1);
 }
