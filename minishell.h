@@ -6,7 +6,7 @@
 /*   By: vahemere <vahemere@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/05 18:14:41 by vahemere          #+#    #+#             */
-/*   Updated: 2022/07/23 00:15:17 by vahemere         ###   ########.fr       */
+/*   Updated: 2022/07/23 15:47:33 by vahemere         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -179,6 +179,9 @@ t_token *go_next(t_token *token);
 int		get_nb_arg(t_token *token);
 void	refresh(t_token *token, t_exec *utils);
 t_env	*edit_var_lst(t_exec *utils, char *var, int	join);
+int		nb_node(t_token *token);
+t_node	*ft_lstadd_back(t_node *lst, t_node *new);
+
 	
 	/*###   BUILT IN  ###*/
 

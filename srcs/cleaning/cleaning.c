@@ -6,7 +6,7 @@
 /*   By: vahemere <vahemere@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/06 18:22:13 by vahemere          #+#    #+#             */
-/*   Updated: 2022/07/23 00:18:03 by vahemere         ###   ########.fr       */
+/*   Updated: 2022/07/23 15:35:10 by vahemere         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ void	ft_free_token(t_token *token)
 	}
 }
 
-void clean(t_exec *utils)
+void	clean(t_exec *utils)
 {
 	if (utils->node)
 	{

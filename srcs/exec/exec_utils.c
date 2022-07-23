@@ -6,14 +6,13 @@
 /*   By: vahemere <vahemere@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/09 16:04:55 by brhajji-          #+#    #+#             */
-/*   Updated: 2022/07/22 23:39:13 by vahemere         ###   ########.fr       */
+/*   Updated: 2022/07/23 15:54:17 by vahemere         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../minishell.h"
 
-
-int		get_nb_arg(t_token *token)
+int	get_nb_arg(t_token *token)
 {
 	int	i;
 
@@ -42,7 +41,6 @@ char	**get_arg(t_token *token)
 	while (++i < nb_arg && token->type == ARG)
 	{
 		arg[i] = token->word;
-		//printf("%s\n", token->word);
 		token = token->next;
 	}
 	arg[i] = NULL;
@@ -51,7 +49,6 @@ char	**get_arg(t_token *token)
 
 void	set_r_in(t_node *node, t_token *token)
 {
-	//printf ("fd set in = %i, name = %s\n", node->here_doc_fd, node->here_doc);
 	node->in = -1;
 	while (token && token->type != PIPE)
 	{
@@ -76,32 +73,31 @@ void	set_r_in(t_node *node, t_token *token)
 		}
 		token = token->next;
 	}
-	//printf (" fd in = %i\n", node->in);
 }
 
-void	set_r_out(t_node *node, t_token *token)
+void	set_r_out(t_node *node, t_token *tk)
 {
-	t_token *tmp;
+	t_token	*tmp;
 
 	node->out = -1;
 	tmp = NULL;
-	while (token && token->type != PIPE)
+	while (tk && tk->type != PIPE)
 	{
-		if (token->type == DR_OUT || token->type == R_OUT)
-			tmp = token;
-		if (token->type == DR_OUT && node->in != -2)
+		if (tk->type == DR_OUT || tk->type == R_OUT)
+			tmp = tk;
+		if (tk->type == DR_OUT && node->in != -2)
 		{
 			if (node->out > 0)
 				close (node->out);
-			node->out = open(token->next->word, O_CREAT | O_RDWR | O_APPEND, 0644);
+			node->out = open(tk->next->word, O_CREAT | O_RDWR | O_APPEND, 0644);
 		}
-		else if (token->type == R_OUT && node->in != -2)
+		else if (tk->type == R_OUT && node->in != -2)
 		{
 			if (node->out > 0)
 				close (node->out);
-			node->out = open(token->next->word, O_CREAT | O_RDWR | O_TRUNC, 0644);
+			node->out = open(tk->next->word, O_CREAT | O_RDWR | O_TRUNC, 0644);
 		}
-		token = token->next;
+		tk = tk->next;
 	}
 	if (tmp && (tmp->type == DR_OUT || tmp->type == R_OUT) && tmp->next)
 		if (node->out == -1 && node->in != -2)
@@ -119,7 +115,7 @@ char	**get_path(char **envp)
 		return (NULL);
 	while (envp[++i])
 	{
-		if (ft_strlen(envp[i]) >=5  && envp[i][0] == 'P' && envp[i][1] == 'A' 
+		if (ft_strlen(envp[i]) >= 5 && envp[i][0] == 'P' && envp[i][1] == 'A'
 			&& envp[i][2] == 'T' && envp[i][3] == 'H' && envp[i][4] == '=')
 		{
 			path = ft_split(envp[i] + 5, ':');

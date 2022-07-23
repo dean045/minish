@@ -6,7 +6,7 @@
 /*   By: vahemere <vahemere@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/16 14:33:41 by brhajji-          #+#    #+#             */
-/*   Updated: 2022/07/23 00:14:57 by vahemere         ###   ########.fr       */
+/*   Updated: 2022/07/23 15:56:33 by vahemere         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ void	here_doc(char *limiter, t_node *node, int i)
 		if (!buff && all.utils->can_run != 0)
 		{
 			write(2, "warning: here-document delimited by end-of-file.\n", 49);
-			break;
+			break ;
 		}
 		if (all.utils->can_run == 0)
 		{
@@ -46,29 +46,28 @@ void	here_doc(char *limiter, t_node *node, int i)
 			write(node->here_doc_fd, "\n", 1);
 		}
 	}
-	//close(node->here_doc_fd);
 	ft_free(buff);
 }
 
-void here_doc_init(t_node *node, t_token *token)
+void	here_doc_init(t_node *node, t_token *tk)
 {
 	int	i;
 
 	i = 1;
 	all.utils->on_here_doc = 1;
 	handle_sig();
-	while (token && token->type != PIPE && ++i && all.utils->can_run == 1)
+	while (tk && tk->type != PIPE && ++i && all.utils->can_run == 1)
 	{
-		if (token && token->type == DR_IN && token->next && token->next->type == LIMITOR)
+		if (tk && tk->type == DR_IN && tk->next && tk->next->type == LIMITOR)
 		{
 			if (node->here_doc_fd > 0)
 			{
 				close(node->here_doc_fd);
 				unlink(node->here_doc);
 			}
-			here_doc(token->next->word, node, i);
+			here_doc(tk->next->word, node, i);
 		}
-		token = token->next;
+		tk = tk->next;
 	}
 	all.utils->on_here_doc = 0;
 	handle_sig();

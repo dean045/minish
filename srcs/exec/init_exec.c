@@ -6,56 +6,17 @@
 /*   By: vahemere <vahemere@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/13 10:58:02 by brhajji-          #+#    #+#             */
-/*   Updated: 2022/07/23 00:19:51 by vahemere         ###   ########.fr       */
+/*   Updated: 2022/07/23 15:44:23 by vahemere         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../minishell.h"
 
-int	nb_node(t_token *token)
-{
-	int	x;
-
-	x = 0;
-	while (token)
-	{
-		if (token->type == PIPE || !token->next)
-			x++;
-		token = token->next;
-	}
-	return (x);
-}
-
-t_node	*ft_lstadd_back(t_node *lst, t_node *new)
-{
-	t_node	*alst;
-	
-	alst = lst;
-	if (!alst)
-		return (new);
-	else
-	{
-		while ((alst)->next)
-			alst = (alst)->next;
-		(alst)->next = new;
-	}
-	return (lst);
-}
-
-t_token *go_next(t_token *token)
-{
-	while (token && token->type != PIPE)
-		token = token->next;
-	if (token && token->type == PIPE)
-		token = token->next;
-	return (token);
-}
-
 t_exec	*init_exec(char **envp)
 {
-	t_exec *utils1;
-	
-	utils1 = ft_malloc(sizeof(t_exec ));
+	t_exec	*utils1;
+
+	utils1 = ft_malloc(sizeof(t_exec));
 	if (!utils1)
 		return (NULL);
 	if (!utils1)
@@ -73,20 +34,11 @@ t_exec	*init_exec(char **envp)
 	return (utils1);
 }
 
-void	refresh(t_token *token, t_exec *utils)
+void	refresh_all_node(t_token *token, t_exec *utils, t_node *node, int i)
 {
-	t_node	*node;
-	int		i;
-	
-	utils->node = NULL;
-	utils->nb_cmd = nb_cmd(token);
-	utils->nb_node = nb_node(token);
-	utils->token_tmp = token;
-	node = NULL;
-	i = -1;
 	while (++i < utils->nb_node)
 	{
-		node = ft_malloc(sizeof(t_node ));
+		node = ft_malloc(sizeof(t_node));
 		node->num = i;
 		node->here_doc_fd = -1;
 		node->here_doc = NULL;
@@ -107,4 +59,18 @@ void	refresh(t_token *token, t_exec *utils)
 	}
 	token = utils->token_tmp;
 	utils->node_tmp = utils->node;
+}
+
+void	refresh(t_token *token, t_exec *utils)
+{
+	t_node	*node;
+	int		i;
+
+	utils->node = NULL;
+	utils->nb_cmd = nb_cmd(token);
+	utils->nb_node = nb_node(token);
+	utils->token_tmp = token;
+	node = NULL;
+	i = -1;
+	refresh_all_node(token, utils, node, i);
 }
