@@ -221,6 +221,7 @@ void	no_fork(t_token *token, t_exec *utils);
 void	free_env(char **envp, int size);
 int		check_parsing(char *str);
 char	*plus_egale(char *str, char *var, int egale);
+t_env	*ft_new_env(char *content);
 
 	/*###  UTILS  ###*/
 

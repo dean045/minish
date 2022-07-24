@@ -15,19 +15,17 @@
 int	init_env(t_exec *utils, char **envp)
 {
 	t_env	*tmp;
-	t_env	*tmp2;
-	char	*temp;
+	t_env	*rendu;
+	char	temp[1024];
 
 	if (!(*envp))
 	{
-		tmp = ft_malloc(sizeof(t_env));
-		temp = ft_malloc(sizeof(char ) * 1024);
-		tmp->content = getcwd(temp, sizeof(temp));
-		tmp->next = NULL;
-		tmp2 = ft_malloc(sizeof(t_env));
-		tmp2->content = "SHLVL=1";
-		tmp2->next = tmp;
-		utils->envp_lst = tmp2;
+		tmp = ft_new_env(ft_strcpy("SHLVL=1"));
+		rendu = tmp;
+		getcwd(temp, sizeof(temp));
+		tmp = ft_new_env(ft_strjoin(ft_strcpy("PWD="), temp));
+		rendu = ft_envadd_back(rendu, tmp);
+		utils->envp_lst = rendu;
 		utils->envp = lst_to_char(utils->envp_lst);
 	}
 	else if (utils && envp)
