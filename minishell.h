@@ -170,7 +170,7 @@ void	replace_old_node(t_token **old_node, char **to_insert);
 	/*###   EXEC  ###*/
 
 char	**get_arg(t_token *token);
-void	exec(t_token *token, t_exec *utils);
+void	exec(t_token *token);
 void	set_r_in(t_node	*node, t_token *token);
 void	set_r_out(t_node *node, t_token *token);
 char	**get_path(char **envp);
@@ -183,6 +183,13 @@ void	refresh(t_token *token, t_exec *utils);
 t_env	*edit_var_lst(t_exec *utils, char *var, int join);
 int		nb_node(t_token *token);
 t_node	*ft_lstadd_back(t_node *lst, t_node *new);
+void	handle_r_in(t_exec utils, int num);
+void	handle_r_out(t_exec utils, int *fd, int num);
+int		check_path_exec(char *word, t_exec utils);
+char	*get_cmd_path(char *cmd, char **envp);
+int		run_built_on_fork(t_token *tk, t_exec *utils);
+int		launch_all(int *fd, int *x, pid_t *pid, t_token *token);
+pid_t	run(t_token *tk, int *fd, int num, t_exec utils);
 
 	/*###   BUILT IN  ###*/
 

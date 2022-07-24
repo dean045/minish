@@ -24,7 +24,7 @@ void	launch_process(char *ret)
 	ft_free(ret);
 	refresh(token, g_all.utils);
 	if (g_all.utils && g_all.utils->can_run == 1)
-		exec(token, g_all.utils);
+		exec(token);
 	clean(g_all.utils);
 }
 
